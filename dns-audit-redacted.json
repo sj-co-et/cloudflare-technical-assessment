@@ -1,0 +1,82 @@
+Scope :
+I utilised an API Token with Zone: DNS:Read permissions, restricted to the specific target zone.
+
+This API token will affect the below accounts and zones, along with their respective permissions
+
+	 ---- Samriddhijaiswal75@gmail.com's Account
+	 	 ----- samriddhijaiswal.com - DNS:Read
+
+The Call:
+# Executed on local Terminal
+curl https://api.cloudflare.com/client/v4/zones/$Zone_ID/dns_records \
+     -H "Authorization: Bearer $APIToken" \
+     -H "Content-Type: application/json" | python3 -m json.tool
+
+The Output:
+#redacted certain parts of the output as other CNAMEs existed in my account
+
+"result": [
+        {
+            "id": "Redacted_REC_ID,"name": "asverify.www.samriddhijaiswal.com",
+            "type": "CNAME",
+            "content": "asverify.stresumdev.z29.web.core.windows.net",
+            "proxiable": true,
+            "proxied": false,
+            "ttl": 1,
+            "settings": {
+                "flatten_cname": false
+            },
+            "meta": {},
+            "comment": "Azure requires proof of ownership before it will accept traffic for a custom domain.",
+            "tags": [],
+            "created_on": "2025-12-19T08:45:06.073061Z",
+            "modified_on": "2025-12-19T08:45:06.073061Z",
+            "comment_modified_on": "2025-12-19T08:45:06.073061Z"
+        },
+        {
+            "id": "Redacted_REC_ID",
+            "name": "tunnel.samriddhijaiswal.com",
+            "type": "CNAME",
+            "content": "UUID.cfargotunnel.com",
+            "proxiable": true,
+            "proxied": true,
+            "ttl": 1,
+            "settings": {
+                "flatten_cname": false
+            },
+            "meta": {},
+            "comment": null,
+            "tags": [],
+            "created_on": "2026-02-16T12:13:02.781478Z",
+            "modified_on": "2026-02-16T12:13:02.781478Z"
+        },
+        {
+            "id": "Redacted_REC_ID,
+            "name": "www.samriddhijaiswal.com",
+            "type": "CNAME",
+            "content": "stresumdev.z29.web.core.windows.net",
+            "proxiable": true,
+            "proxied": true,
+            "ttl": 1,
+            "settings": {
+                "flatten_cname": false
+            },
+            "meta": {},
+            "comment": null,
+            "tags": [],
+            "created_on": "2025-12-16T10:58:58.406549Z",
+            "modified_on": "2025-12-19T08:45:11.776912Z"
+        }
+    ],
+    "success": true,
+    "errors": [],
+    "messages": [],
+    "result_info": {
+        "page": 1,
+        "per_page": 100,
+        "count": 3,
+        "total_count": 3,
+        "total_pages": 1
+    }
+}
+

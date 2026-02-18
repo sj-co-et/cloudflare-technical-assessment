@@ -1,15 +1,11 @@
 export default {
   async fetch(request) {
-    const userAgent = request.headers.get("User-Agent") || ""; //null scneario
+    const userAgent = request.headers.get("User-Agent") || "";
     const newLocationHost = "developers.cloudflare.com/workers/about"
-    
-    console.log("Detected User-Agent:", userAgent);
 
     if(userAgent.includes("curl")){
       const cookieHeader = request.headers.get("Cookie") || "";
       const isBypass = cookieHeader.includes("cf-noredir=true");
-
-      console.log("cURL detected. Bypass cookie found?", isBypass);
 
       if(!isBypass){
         const newLocation = "https://"+newLocationHost
